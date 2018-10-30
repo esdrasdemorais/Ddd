@@ -45,4 +45,16 @@ public abstract class Context implements IContext {
 			this.db = DbImpl.setDb(client, name);
 		return context;
 	}
+
+	@Override
+	public void init(IContext context) throws UnknownHostException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IContext get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

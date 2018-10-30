@@ -14,9 +14,9 @@ public abstract class RepositoryImpl<T> extends Context {
 	
 	public abstract <T> List<T> find(String query, Object[] params);
 
-	public abstract boolean save(T object);
+	public abstract Boolean save(T object);
 
-	public abstract boolean remove(T object);
+	public abstract Boolean remove(T object);
 	
 	public abstract List<T> findAll();
 

@@ -5,6 +5,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.Function;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.util.JSON;
 import com.mongodb.DBCollection;
 
 import java.net.UnknownHostException;
@@ -43,13 +44,18 @@ public class MongoRepository<T> extends RepositoryImpl<T> {
 	}
 
 	@Override
-	public boolean save(T object) {
-		// TODO Auto-generated method stub
-		return false;
+	public Boolean save(T object) {
+		DBCollection collection = this.getMongoDatabase()
+			.getCollection(object.getClass().getName());
+		Gson gson = new Gson();
+		BasicDBObject document = (BasicDBObject)JSON.parse(
+			gson.toJson(object)
+		collection.save(document);
+		return true;
 	}
 
 	@Override
-	public boolean remove(T object) {
+	public Boolean remove(T object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -70,17 +76,5 @@ public class MongoRepository<T> extends RepositoryImpl<T> {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void init(IContext context) throws UnknownHostException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public IContext get() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
