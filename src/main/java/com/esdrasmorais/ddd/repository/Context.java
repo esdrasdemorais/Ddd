@@ -57,4 +57,8 @@ public abstract class Context implements IContext {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public IDb getDB() {
+		return this.db;
+	}
 }

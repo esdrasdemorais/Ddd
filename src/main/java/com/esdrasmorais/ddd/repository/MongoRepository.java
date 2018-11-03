@@ -8,7 +8,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.util.JSON;
 import com.mongodb.DBCollection;
 
-import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
@@ -17,6 +17,8 @@ import com.esdrasmorais.ddd.repository.interfaces.IClient;
 import com.esdrasmorais.ddd.repository.interfaces.IContext;
 import com.esdrasmorais.ddd.repository.interfaces.IDb;
 import com.mongodb.BasicDBObject;
+import com.mongodb.Block;
+import com.google.gson.Gson;
 
 public class MongoRepository<T> extends RepositoryImpl<T> {
 	public MongoRepository(IContext context, IClient client, IDb db) {
@@ -45,31 +47,64 @@ public class MongoRepository<T> extends RepositoryImpl<T> {
 
 	@Override
 	public Boolean save(T object) {
-		DBCollection collection = this.getMongoDatabase()
+		DBCollection collection = this.getDB()
 			.getCollection(object.getClass().getName());
 		Gson gson = new Gson();
-		BasicDBObject document = (BasicDBObject)JSON.parse(
-			gson.toJson(object)
+//		BasicDBObject document = (BasicDBObject)JSON.parse(
+//			gson.toJson(object)
+//		);
+		BasicDBObject document = BasicDBObject.parse(gson.toJson(object));
 		collection.save(document);
 		return true;
 	}
 
 	@Override
 	public Boolean remove(T object) {
-		// TODO Auto-generated method stub
-		return false;
+		DBCollection collection = this.getDB()
+			.getCollection(object.getClass().getName());
+		Gson gson = new Gson();
+//		BasicDBObject document = (BasicDBObject)JSON.parse(
+//				gson.toJson(object)
+//			);
+		BasicDBObject document = BasicDBObject.parse(gson.toJson(object));
+		collection.remove(document);
+		return true;
 	}
 
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		T object = null;
+		List<T> list = new ArrayList<>();
+		FindIterable<Document> iterable = this.getMongoDatabase()
+			.getCollection(object.getClass().getName()).find();
+		iterable.forEach(new Block<Document>() {
+			@Override
+			public void apply(final Document document) {
+				Gson gson = new Gson();
+				T obj = (T) gson.fromJson(
+					document.toJson(), 
+					object.getClass().getClass()
+				);
+				list.add(obj);
+			}
+		});
+		return list;
 	}
 
 	@Override
 	public T findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		T object = null;
+		List<T> list = new ArrayList<>();
+		
+	    Document query = new Document();
+	    query.append("id", id);
+		
+		FindIterable<Document> result = this.getMongoDatabase()
+			.getCollection(object.getClass().getName()).find(
+				query
+			);
+		
+		return list.get(0);
 	}
 
 	@Override
