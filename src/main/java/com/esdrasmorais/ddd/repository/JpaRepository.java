@@ -34,13 +34,13 @@ public class JpaRepository extends RepositoryImpl {
 	}
 
 	@Override
-	public boolean save(Object object) {
+	public Boolean save(Object object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(Object object) {
+	public Boolean remove(Object object) {
 		// TODO Auto-generated method stub
 		return false;
 	}

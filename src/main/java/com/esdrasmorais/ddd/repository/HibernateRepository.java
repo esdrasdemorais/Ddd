@@ -32,13 +32,13 @@ public class HibernateRepository<T> extends RepositoryImpl<T> {
 	}
 
 	@Override
-	public boolean save(T object) {
+	public Boolean save(T object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(T object) {
+	public Boolean remove(T object) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -62,7 +62,6 @@ public class HibernateRepository<T> extends RepositoryImpl<T> {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 }
