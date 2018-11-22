@@ -36,7 +36,9 @@ public class MongoContext extends Context {
 	public MongoContext(IContext context, IClient client, IDb db) {
 		super(context, client, db);
 		if (context == null) {
-			MongoClientImpl mongoCli = new MongoClientImpl("localhost", 27017);
+			MongoClientImpl mongoCli = new MongoClientImpl(
+				System.getProperty("mongo.uri"), 
+				27017);
 			this.context = new MongoContext(
 				null, 
 				mongoCli, 
