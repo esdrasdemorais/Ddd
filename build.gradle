@@ -42,6 +42,21 @@ allprojects {
     }
 }
 
-mainClassName = "test/java/RepositoryTest"
+//sourceSets.main.java.srcDirs = ['src']
+
+mainClassName = "ddd.Ddd"
 
 version = '0.1.7'
+
+test {
+    logger.info '==test=='
+    systemProperty 'mongo_uri', 'mongodb+srv://esdrasdemoraistester:aaa@esdrasmorais-bvesv.gcp.mongodb.net/test?retryWrites=true'
+}
+
+// The run task added by the application plugin
+// is also of type JavaExec.
+tasks.withType(JavaExec) {
+    // Assign all Java system properties from
+    // the command line to the JavaExec task.
+    systemProperties System.properties
+}
