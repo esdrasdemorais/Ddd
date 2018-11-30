@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.esdrasmorais.ddd.repository.interfaces.IRepository;
 
-public class Service<T> implements IService<T> {
+public abstract class Service<T> implements IService<T> {
 
 	private final IRepository<T> _repository;
 

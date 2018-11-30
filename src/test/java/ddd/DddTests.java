@@ -13,12 +13,12 @@ public class DddTests {
     		System.getProperty("mongo_uri") == System.getProperty("mongo.uri")
     	);
     	
-    	MongoRepository<User> mongoRepository = new MongoRepository<User>(
+    	UserRepository userRepository = new UserRepository(
     		null, null, null
     	);
         assertTrue(
 			"should return 'true'", 
-			mongoRepository instanceof MongoRepository<?>
+			userRepository instanceof MongoRepository<?>
         );
     }
 }

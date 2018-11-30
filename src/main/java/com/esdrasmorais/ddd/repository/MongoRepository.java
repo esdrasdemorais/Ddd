@@ -20,7 +20,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
 import com.google.gson.Gson;
 
-public class MongoRepository<T> extends RepositoryImpl<T> {
+public abstract class MongoRepository<T> extends RepositoryImpl<T> {
 	public MongoRepository(IContext context, IClient client, IDb db) {
 		super(context, client, db);
 	}
@@ -109,7 +109,6 @@ public class MongoRepository<T> extends RepositoryImpl<T> {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 }
