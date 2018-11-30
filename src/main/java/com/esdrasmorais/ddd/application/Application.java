@@ -5,8 +5,7 @@ import java.util.List;
 
 import com.esdrasmorais.ddd.service.IService;
 
-public class Application<T> implements IApplication<T> {
-
+public abstract class Application<T> implements IApplication<T> {
 	private final IService<T> _service;
 
 	public Application(IService<T> service) {
