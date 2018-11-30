@@ -26,7 +26,7 @@ public class HibernateRepository<T> extends RepositoryImpl<T> {
 	}
 
 	@Override
-	public <T> List<T> find(String query, Object[] params) {
+	public /*<T>*/ List<T> find(String query, Object[] params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

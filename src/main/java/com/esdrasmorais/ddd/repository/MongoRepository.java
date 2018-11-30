@@ -16,17 +16,20 @@ import org.bson.Document;
 import com.esdrasmorais.ddd.repository.interfaces.IClient;
 import com.esdrasmorais.ddd.repository.interfaces.IContext;
 import com.esdrasmorais.ddd.repository.interfaces.IDb;
+import com.esdrasmorais.ddd.repository.interfaces.IRepository;
 import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
 import com.google.gson.Gson;
 
-public abstract class MongoRepository<T> extends RepositoryImpl<T> {
+public abstract class MongoRepository<T> extends RepositoryImpl<T> 
+	implements IRepository<T> 
+{
 	public MongoRepository(IContext context, IClient client, IDb db) {
 		super(context, client, db);
 	}
 
 	@Override
-	public <T> List<T> find(String query, Object[] params) {
+	public List<T> find(String query, Object[] params) {
 		FindIterable<Document> result = this.findByKey(
 			"Employee", "age", 32, (value) -> new Integer(value));
 		/*while (result.hasNext()) {

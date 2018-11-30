@@ -12,7 +12,7 @@ public abstract class RepositoryImpl<T> extends Context {
 		super(context, client, db);
 	}
 	
-	public abstract <T> List<T> find(String query, Object[] params);
+	public abstract List<T> find(String query, Object[] params);
 
 	public abstract Boolean save(T object);
 
