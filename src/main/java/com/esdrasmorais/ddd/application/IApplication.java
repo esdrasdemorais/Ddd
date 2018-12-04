@@ -10,9 +10,9 @@ public interface IApplication<T> {
 
 	public List<T> find(String query, Object[] params);
 
-	public boolean save(T object);
+	public Boolean save(T object);
 
-	public boolean remove(T object);
+	public Boolean remove(T object);
 
 	public void dispose();
 }

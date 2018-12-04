@@ -24,11 +24,11 @@ public abstract class Application<T> implements IApplication<T> {
 		return this._service.find(query, params);
 	}
 
-	public boolean save(T object) {
+	public Boolean save(T object) {
 		return this._service.save(object);
 	}
 
-	public boolean remove(T object) {
+	public Boolean remove(T object) {
 		return this._service.remove(object);
 	}
 
