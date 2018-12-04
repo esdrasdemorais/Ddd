@@ -25,11 +25,11 @@ public abstract class Service<T> implements IService<T> {
 		return this._repository.find(query, params);
 	}
 
-	public boolean save(T object) {
+	public Boolean save(T object) {
 		return this._repository.save(object);
 	}
 
-	public boolean remove(T object) {
+	public Boolean remove(T object) {
 		return this._repository.remove(object);
 	}
 
