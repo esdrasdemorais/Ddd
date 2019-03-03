@@ -3,11 +3,16 @@ package com.esdrasmorais.ddd.repository;
 
 import com.esdrasmorais.ddd.repository.interfaces.IDb;
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.MongoClientURI;
 
 public class MongoClientImpl extends Client {	
 	private void setMongoClient() {
-		this.mongoClient = new MongoClient(this.getHost(), this.getPort());
+		MongoClientURI mongoClientURI = new MongoClientURI(
+			System.getProperty("mongo.uri")
+		);
+		this.mongoClient = new MongoClient(
+			mongoClientURI
+		);
 	}
 	
 	public MongoClient getMongoClient() {

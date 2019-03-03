@@ -9,10 +9,11 @@ import com.esdrasmorais.ddd.repository.MongoRepository;
  */
 public class DddTests {
     @Test public void testRepository() {
-//    	assertTrue(
-//    		System.getProperty("mongo_uri") == System.getProperty("mongo.uri")
-//    	);
-    	
+    	assertTrue(
+    		System.getProperty("mongo_uri") != null //&&
+    		//System.getProperty("mongo.uri") != null &&
+    		//System.getProperty("mongo_uri") == System.getProperty("mongo.uri")
+    	);
     	UserRepository userRepository = new UserRepository(
     		null, null, null
     	);
