@@ -23,6 +23,11 @@ public class MongoClientImpl extends Client {
 		super(host, port);
 		this.setMongoClient();
 	}
+	
+	public MongoClientImpl(String connectionString) {
+		super(null, null);
+		this.setMongoClient();
+	}
 
 	@Override
 	public IDb getDb(String database) {

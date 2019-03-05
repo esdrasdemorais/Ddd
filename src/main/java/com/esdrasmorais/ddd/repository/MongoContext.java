@@ -35,10 +35,13 @@ public class MongoContext extends Context {
     
 	public MongoContext(IContext context, IClient client, IDb db) {
 		super(context, client, db);
+
+		System.out.println("MC="+System.getProperty("mongo.uri"));
+		
 		if (context == null) {
 			MongoClientImpl mongoCli = new MongoClientImpl(
-				System.getProperty("mongo.uri"), 
-				27017);
+				System.getProperty("mongo.uri")
+			);
 			this.context = new MongoContext(
 				null, 
 				mongoCli, 
@@ -91,7 +94,6 @@ public class MongoContext extends Context {
 
 	@Override
 	public void init(IContext context) throws UnknownHostException {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 }
