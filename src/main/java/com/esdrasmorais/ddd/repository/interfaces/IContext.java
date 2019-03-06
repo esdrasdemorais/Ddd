@@ -9,4 +9,6 @@ public interface IContext {
 	public IContext get();
 
 	public IContext connect(String name);
+	
+	public IClient getClient();
 }

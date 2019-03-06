@@ -9,9 +9,9 @@ import com.esdrasmorais.ddd.repository.interfaces.IDb;
 import com.mongodb.client.MongoDatabase;
 
 public abstract class Context implements IContext {
-	private IClient client;
-	private IDb db;
-	private static IContext context = null;
+	protected IClient client;
+	protected IDb db;
+	protected static IContext context = null;
 
 	public Context(IContext context, IClient client, IDb db) {
 		if (context != null)
@@ -49,13 +49,16 @@ public abstract class Context implements IContext {
 	@Override
 	public void init(IContext context) throws UnknownHostException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public IContext get() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public IClient getClient() {
+		return this.client;
 	}
 	
 	public IDb getDB() {

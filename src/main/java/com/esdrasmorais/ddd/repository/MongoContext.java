@@ -1,30 +1,22 @@
 
 package com.esdrasmorais.ddd.repository;
 
-import java.net.UnknownHostException;
-
 import com.esdrasmorais.ddd.repository.interfaces.IClient;
+import java.net.UnknownHostException;
 import com.esdrasmorais.ddd.repository.interfaces.IContext;
-import com.esdrasmorais.ddd.repository.Context;
 import com.esdrasmorais.ddd.repository.interfaces.IDb;
 
 import java.util.function.Function;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
-import com.mongodb.MongoClient;
 
 public class MongoContext extends Context {
 
     private static MongoContext ctx = new MongoContext();
     
-    private MongoClient client;
-    private DB db;
-    private IContext context = null;
-    
-    private MongoContext() {
+    public MongoContext() {
     	super(null, null, null);
     	try {
             init();
@@ -33,27 +25,45 @@ public class MongoContext extends Context {
         }
     }
     
-	public MongoContext(IContext context, IClient client, IDb db) {
-		super(context, client, db);
-
-		System.out.println("MC="+System.getProperty("mongo.uri"));
-		
+    public MongoContext(IDb db) {
+    	super(null, null, db);
+    	this.db = db;
+    	try {
+            init();
+        } catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+    }
+    
+    private void init() throws UnknownHostException {
 		if (context == null) {
+			System.out.print("uri="+System.getProperty("mongo.uri"));
 			MongoClientImpl mongoCli = new MongoClientImpl(
 				System.getProperty("mongo.uri")
 			);
-			this.context = new MongoContext(
+		    this.client = mongoCli;
+			MongoContext.context = new MongoContext(
 				null, 
 				mongoCli, 
-				new MongoDb(mongoCli, "Fisco")
+				new MongoDb(mongoCli, this.db.getName())
 			);
 		}
-	}
-
-    private void init() throws UnknownHostException {
-	    this.client = new MongoClient("localhost", 27017);
     }
 
+	@Override
+	public void init(IContext context) throws UnknownHostException {
+		// TODO Auto-generated method stub		
+	}
+	
+	public MongoContext(IContext context, IClient client, IDb db) 
+		throws UnknownHostException
+	{
+		super(context, client, db);
+		this.init();
+		System.out.println("MC="+System.getProperty("mongo.uri"));
+		
+	}
+	
 	public MongoContext get() {	
 	    return ctx;
     }
@@ -66,7 +76,7 @@ public class MongoContext extends Context {
 	    	);
         }
 	    
-	    this.db = client.getDB(dbname);
+	    this.db = this.client.getDb(dbname);
 	
 	    System.out.println("DB Details :: " + db.getName());
 	
@@ -91,9 +101,4 @@ public class MongoContext extends Context {
 		
     	return cursor;
     }
-
-	@Override
-	public void init(IContext context) throws UnknownHostException {
-		// TODO Auto-generated method stub		
-	}
 }

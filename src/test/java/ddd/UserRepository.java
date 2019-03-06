@@ -8,6 +8,5 @@ import com.esdrasmorais.ddd.repository.interfaces.IDb;
 public class UserRepository extends MongoRepository<User> {
 	public UserRepository(IContext context, IClient client, IDb db) {
 		super(null, null, null);
-		// TODO Auto-generated constructor stub
 	}
 }

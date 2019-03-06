@@ -9,4 +9,6 @@ public interface IDb {
 	public IDb getDb();
 	
 	public DBCollection getCollection(String collection);
+	
+	public String getName();
 }
