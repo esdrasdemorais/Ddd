@@ -1,7 +1,7 @@
 
 package com.esdrasmorais.ddd.repository.interfaces;
 
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.MongoClient;
 
 public interface IClient {
 	public void setHost(String host);
@@ -10,5 +10,5 @@ public interface IClient {
 
 	public IDb getDb(String name);
 	
-	public MongoDatabase getMongoDatabase();
+	public MongoClient getMongoClient();
 }

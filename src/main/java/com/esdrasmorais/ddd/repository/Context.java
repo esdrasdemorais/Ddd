@@ -35,14 +35,10 @@ public abstract class Context implements IContext {
 	public static IContext getContext() {
 		return context;
 	}
-	
-	public MongoDatabase getMongoDatabase() {
-		return this.client.getMongoDatabase();
-	}
 
 	public IContext connect(String name) {
 		if (this.db == null)
-			this.db = DbImpl.setDb(client, name);
+			this.db = this.client.getDb(name);
 		return context;
 	}
 
@@ -63,5 +59,9 @@ public abstract class Context implements IContext {
 	
 	public IDb getDB() {
 		return this.db;
+	}
+	
+	public MongoDatabase getMongoDatabase() {
+		return this.db.getMongoDatabase();
 	}
 }

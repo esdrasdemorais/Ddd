@@ -1,11 +1,10 @@
 
 package com.esdrasmorais.ddd.repository;
 
-import com.esdrasmorais.ddd.repository.interfaces.IDb;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-public class MongoClientImpl extends Client {	
+public class MongoClientImpl extends Client {
 	public MongoClientImpl(String connectionString) {
 		super(null, null);
 		this.setMongoClient();
@@ -23,15 +22,5 @@ public class MongoClientImpl extends Client {
 		this.mongoClient = new MongoClient(
 			mongoClientURI
 		);
-	}
-	
-	public MongoClient getMongoClient() {
-		return this.mongoClient;
-	}
-
-	@Override
-	public IDb getDb(String database) {
-		this.mongoDatabase = this.mongoClient.getDatabase(database);
-		return new MongoDb(this, database);
 	}
 }

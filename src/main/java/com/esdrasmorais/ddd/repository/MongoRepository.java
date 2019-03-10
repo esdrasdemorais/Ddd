@@ -1,11 +1,9 @@
 
 package com.esdrasmorais.ddd.repository;
 
-//import com.mongodb.DBCursor;
-import com.mongodb.Function;
 import com.mongodb.client.FindIterable;
+import com.mongodb.Function;
 import com.mongodb.client.MongoCollection;
-//import com.mongodb.util.JSON;
 import com.mongodb.DBCollection;
 
 import java.util.ArrayList;

@@ -7,24 +7,26 @@ import com.mongodb.client.MongoDatabase;
 
 public abstract class DbImpl implements IDb {
 	private static IDb db = null;
+	protected IClient client;
+	protected MongoDatabase mongoDatabase;
 
-	public DbImpl(IClient client, String database) {
-		db = client.getDb(database);
+	public DbImpl(IClient client, MongoDatabase database) {
 		//boolean auth = mongoDb.authenticate("username", "pwd".toCharArray());
+		this.client = client;
+		this.mongoDatabase = database;
+		DbImpl.db = this;
 	}
 	
-	public static IDb setDb(IClient client, String name) {
+	public void setDb(IClient client, String name) {
 		if (db == null)
 			db = client.getDb(name);
-		return db;
 	}
 
 	public IDb getDb() {
 		return db;
 	}
-
-	@Override
-	public void setDb(IClient client) {
-		// TODO Auto-generated method stub
+	
+	public MongoDatabase getMongoDatabase() {
+		return this.mongoDatabase;
 	}
 }

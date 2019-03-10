@@ -52,7 +52,7 @@ version = '0.1.7'
 
 test {
     logger.info '==test=='
-    systemProperty 'mongo.uri', 'mongodb+srv://esdrasdemoraistester:@esdrasmorais-bvesv.gcp.mongodb.net/test?retryWrites=true'
+    systemProperty 'mongo.uri', 'mongodb+srv://esdrasdemoraistester:JJQNSuwyCEm7xtCE@esdrasmorais-bvesv.gcp.mongodb.net/test?retryWrites=true'
 }
 
 // The run task added by the application plugin

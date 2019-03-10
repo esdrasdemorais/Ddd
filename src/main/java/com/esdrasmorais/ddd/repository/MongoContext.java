@@ -12,10 +12,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 
-public class MongoContext extends Context {
-
-    private static MongoContext ctx = new MongoContext();
-    
+public class MongoContext extends Context {    
     public MongoContext() {
     	super(null, null, null);
     	try {
@@ -34,41 +31,37 @@ public class MongoContext extends Context {
         	ex.printStackTrace();
         }
     }
-    
+
+	public MongoContext(IContext context, IClient client, IDb db) 
+		throws UnknownHostException
+	{
+		super(context, client, db);
+		this.init();
+	}
+	
     private void init() throws UnknownHostException {
-		if (context == null) {
-			System.out.print("uri="+System.getProperty("mongo.uri"));
+		if (MongoContext.context == null) {
 			MongoClientImpl mongoCli = new MongoClientImpl(
 				System.getProperty("mongo.uri")
 			);
 		    this.client = mongoCli;
 			MongoContext.context = new MongoContext(
 				null, 
-				mongoCli, 
-				new MongoDb(mongoCli, this.db.getName())
+				this.client, 
+				null
 			);
 		}
     }
 
-	@Override
 	public void init(IContext context) throws UnknownHostException {
-		// TODO Auto-generated method stub		
+	
 	}
 	
-	public MongoContext(IContext context, IClient client, IDb db) 
-		throws UnknownHostException
-	{
-		super(context, client, db);
-		this.init();
-		System.out.println("MC="+System.getProperty("mongo.uri"));
-		
-	}
-	
-	public MongoContext get() {	
-	    return ctx;
+	public IContext get() {	
+	    return MongoContext.context;
     }
 
-	public MongoContext connectDb(String dbname) {
+	public IContext connectDb(String dbname) {
 	    if(db != null) {
 	    	throw new RuntimeException(
 	    		"Already conected to " + db.getName() + 
@@ -80,7 +73,7 @@ public class MongoContext extends Context {
 	
 	    System.out.println("DB Details :: " + db.getName());
 	
-	    return ctx;
+	    return MongoContext.context;
 	}
 
 	public <T,X> DBCursor findByKey(

@@ -1,10 +1,9 @@
 package ddd;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 import com.esdrasmorais.ddd.repository.MongoContext;
-import com.esdrasmorais.ddd.repository.MongoDb;
 import com.esdrasmorais.ddd.repository.MongoRepository;
 import com.esdrasmorais.ddd.repository.interfaces.IClient;
 import com.esdrasmorais.ddd.repository.interfaces.IContext;
@@ -16,25 +15,24 @@ import com.esdrasmorais.ddd.repository.interfaces.IDb;
 public class DddTests {
     @Test public void testRepository() {
     	assertTrue(
-    		System.getProperty("mongo.uri") != null //&&
-    		//System.getProperty("mongo.uri") != null &&
-    		//System.getProperty("mongo_uri") == System.getProperty("mongo.uri")
+    		System.getProperty("mongo.uri") != null
     	);
- System.out.print("uri="+System.getProperty("mongo.uri"));
- 
+  
     	IContext context = new MongoContext();
- if (context != null) System.out.println("context OK!!!");
- System.exit(0);
- 		IClient client = context.getClient();
-    	IDb db = new MongoDb(client, "Drones");
-    	
+ 		IClient client = context.getClient();	
+		IDb db = client.getDb("Drones");
+	
     	UserRepository userRepository = new UserRepository(
     		context, client, db
     	);
-    	
+    	    	
         assertTrue(
 			"should return 'true'", 
 			userRepository instanceof MongoRepository<?>
         );
+        
+//        assertTrue(
+//        	userRepository.findAll().size() >= 0
+//        );
     }
 }
