@@ -19,6 +19,12 @@
 </dependency>
 </dependencies>
 
-  
+<distributionManagement>
+   <repository>
+     <id>github</id>
+     <name>GitHub esdrasdemorais Apache Maven Packages</name>
+     <url>https://maven.pkg.github.com/esdrasdemorais/Ddd</url>
+   </repository>
+</distributionManagement>  
 
 </project>
