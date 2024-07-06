@@ -63,7 +63,7 @@
   <dependency>
     <groupId>org.xerial.snappy</groupId>
     <artifactId>snappy-java</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.10.4</version>
     <scope>compile</scope>
     <optional>true</optional>
   </dependency>
@@ -80,6 +80,12 @@
     <version>1.0.1</version>
     <scope>compile</scope>
     <optional>true</optional>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+  <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.12.14</version>
   </dependency>
 </dependencies>
 
