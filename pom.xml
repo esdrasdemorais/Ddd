@@ -3,9 +3,9 @@
 <modelVersion>4.0.0</modelVersion>
 
 <groupId>com.esdrasdemorais</groupId>
-<artifactId>Ddd</artifactId>
+<artifactId>ddd</artifactId>
 <version>1.0-SNAPSHOT</version>
-<name>Ddd</name>
+<name>ddd</name>
 <description>Domain Driven Design Java Library</description>
 
 <properties>
