@@ -87,6 +87,11 @@
       <artifactId>mongo-java-driver</artifactId>
       <version>3.12.14</version>
   </dependency>
+  <dependency>
+    <groupId>org.netbeans.external</groupId>
+    <artifactId>com-google-gson</artifactId>
+    <version>RELEASE113</version>
+  </dependency>
 </dependencies>
 
 <distributionManagement>
