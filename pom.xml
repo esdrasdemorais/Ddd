@@ -96,7 +96,7 @@
 
 <distributionManagement>
    <repository>
-     <id>com.esdrasdemorais.ddd</id>
+     <id>github</id>
      <name>GitHub esdrasdemorais Apache Maven Packages</name>
      <url>https://maven.pkg.github.com/esdrasdemorais/ddd</url>
    </repository>
