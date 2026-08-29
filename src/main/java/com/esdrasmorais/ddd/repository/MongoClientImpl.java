@@ -17,7 +17,7 @@ public class MongoClientImpl extends Client {
 	
 	private void setMongoClient() {
 		MongoClientURI mongoClientURI = new MongoClientURI(
-			System.getProperty("mongo_uri")
+			System.getenv("mongo_uri")
 		);
 		this.mongoClient = new MongoClient(
 			mongoClientURI
