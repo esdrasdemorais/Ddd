@@ -1,4 +1,3 @@
-
 package com.esdrasmorais.ddd.application;
 
 import java.util.List;
